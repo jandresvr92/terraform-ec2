@@ -1,97 +1,122 @@
-Infraestructura AWS con Terraform
-📌 Descripción
-Este proyecto implementa una infraestructura básica en AWS utilizando Terraform de manera modular. El objetivo es desplegar múltiples instancias EC2 de forma automatizada, aprovechando buenas prácticas como el uso de variables, módulos reutilizables, outputs y la creación dinámica de recursos.
+# AWS Infrastructure with Terraform
 
-La actividad permite familiarizarse con la estructura y flujos de un proyecto Terraform profesional, y sienta las bases para automatizar despliegues en la nube de manera declarativa y ordenada.
+## 📌 Description
 
-🛠 Tecnologías y Herramientas
-Terraform (>= 1.0)
+This project implements a basic AWS infrastructure using Terraform in a modular way. The goal is to deploy multiple EC2 instances automatically, following best practices such as the use of variables, reusable modules, outputs, and dynamic resource creation.
 
-AWS (cuenta y credenciales configuradas)
+This activity helps you get familiar with the structure and workflow of a professional Terraform project and lays the foundation for automating cloud deployments declaratively and in an organized manner.
 
-AWS CLI (opcional, para validaciones)
+---
 
-🎯 Objetivos de Aprendizaje
-Al completar este proyecto podrás:
+## 🛠 Technologies and Tools
 
-Declarar y utilizar variables en Terraform.
+- **Terraform** (>= 1.0)
+- **AWS** (account and credentials configured)
+- **AWS CLI** (optional, for validation)
 
-Crear y consumir módulos reutilizables.
+---
 
-Usar el argumento count para crear múltiples recursos.
+## 🎯 Learning Objectives
 
-Exponer información clave del despliegue mediante outputs.
+By completing this project you will be able to:
 
-📂 Estructura del Proyecto
-bash
-Copiar
-Editar
+- Declare and use variables in Terraform.
+- Create and consume reusable modules.
+- Use the `count` argument to create multiple resources.
+- Expose key deployment information using outputs.
+
+---
+
+## 📂 Project Structure
+
+```
 /aws-terraform-ec2
 │
 ├── /modules
-│   └── /ec2_instance       # Módulo reutilizable para instancias EC2
+│   └── /ec2_instance       # Reusable module for EC2 instances
 │       ├── main.tf
 │       ├── variables.tf
 │       └── outputs.tf
 │
-├── main.tf                 # Configuración principal que consume el módulo
-├── variables.tf            # Declaración de variables globales
-├── outputs.tf              # Outputs principales del proyecto
-└── README.md               # Este archivo
-🚀 Instrucciones de Uso
-Clonar el repositorio:
+├── main.tf                 # Main configuration consuming the module
+├── variables.tf            # Global variable declarations
+├── outputs.tf              # Main project outputs
+└── README.md               # This file
+```
 
-bash
-Copiar
-Editar
-git clone [<URL_DEL_REPO>](https://github.com/jandresvr92/terraform-ec2.git)
-cd aws-terraform-ec2
-Configura tus credenciales de AWS:
+---
 
-Debes tener configurado aws configure o las variables de entorno de acceso.
+## 🚀 Usage Instructions
 
-Edita las variables según tu contexto en variables.tf:
+1. **Clone the repository:**
 
-AMI ID, tipo de instancia, subnet, security groups, cantidad de instancias, etc.
+    ```bash
+    git clone <REPO_URL>
+    cd aws-terraform-ec2
+    ```
 
-Inicializa el proyecto y despliega:
+2. **Configure your AWS credentials:**
 
-bash
-Copiar
-Editar
-terraform init
-terraform plan
-terraform apply
-Revisa los outputs del despliegue:
+    You must have run `aws configure` or set the appropriate environment variables.
 
-Se mostrarán los IDs y IP públicas de las instancias EC2 creadas.
+3. **Edit the variables according to your context in `terraform.tfvars`:**
 
-🌟 Características
-Módulo parametrizable para instancias EC2.
+    - AMI ID
+    - Instance type
+    - Subnet
+    - Security groups
+    - Number of instances
+    - Etc.
 
-Creación dinámica de múltiples instancias usando count.
+4. **Initialize and deploy the project:**
 
-Outputs útiles: IDs e IPs públicas de las instancias.
+    ```bash
+    terraform init
+    terraform plan
+    terraform apply
+    ```
 
-Proyecto organizado y fácil de ampliar.
+5. **Review the deployment outputs:**
 
-📄 Ejemplo de Uso del Módulo
-En main.tf se utiliza el módulo así:
+    The IDs and public IPs of the created EC2 instances will be displayed.
 
-hcl
-Copiar
-Editar
+---
+
+## 🌟 Features
+
+- Parameterizable module for EC2 instances.
+- Dynamic creation of multiple instances using `count`.
+- Useful outputs: IDs and public IPs of the instances.
+- Well-organized and easily extensible project.
+
+---
+
+## 📄 Example Module Usage
+
+In `main.tf`, the module is used as follows:
+
+```hcl
 module "ec2_instances" {
-  source           = "./modules/ec2_instance"
-  ami_id           = var.ami_id
-  instance_type    = var.instance_type
-  subnet_id        = var.subnet_id
-  security_groups  = var.security_groups
-  instance_count   = var.instance_count
+  source              = "./modules/ec2_instance"
+  ami_id              = var.ami_id
+  instance_type       = var.instance_type
+  subnet_id           = var.subnet_id
+  security_group_ids  = var.security_group_ids
+  instance_count      = var.instance_count
+  instance_name_prefix = var.instance_name_prefix
+  tags                = var.tags
 }
-🤝 Contribuciones
-¡Las mejoras son bienvenidas! Si encuentras oportunidades para optimizar o agregar funcionalidad, abre un issue o haz un PR.
+```
 
-📜 Licencia
+---
+
+## 🤝 Contributions
+
+Improvements are welcome! If you find opportunities to optimize or add functionality, open an issue or submit a PR.
+
+---
+
+## 📜 License
+
 MIT
 
