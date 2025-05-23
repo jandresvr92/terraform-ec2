@@ -30,7 +30,7 @@ By completing this project you will be able to:
 ## 📂 Project Structure
 
 ```
-/aws-terraform-ec2
+/terraform-ec2
 │
 ├── /modules
 │   └── /ec2_instance       # Reusable module for EC2 instances
@@ -41,6 +41,9 @@ By completing this project you will be able to:
 ├── main.tf                 # Main configuration consuming the module
 ├── variables.tf            # Global variable declarations
 ├── outputs.tf              # Main project outputs
+├── terraform.tfvars.example # Example variable values
+├── .gitignore              # Git ignore file
+├── LICENSE                 # Project license
 └── README.md               # This file
 ```
 
@@ -51,8 +54,8 @@ By completing this project you will be able to:
 1. **Clone the repository:**
 
     ```bash
-    git clone <REPO_URL>
-    cd aws-terraform-ec2
+    git clone <REPO_URL>https://github.com/jandresvr92/terraform-ec2.git
+    cd terraform-ec2
     ```
 
 2. **Configure your AWS credentials:**
